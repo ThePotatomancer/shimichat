@@ -1,8 +1,6 @@
-import { configureStore, createReducer} from '@reduxjs/toolkit';
-
-interface CurrentUserState {
-    userId: string
-}
+import { combineReducers, configureStore, createReducer} from '@reduxjs/toolkit';
+import { usersReducer } from './users';
+import { currentUserReducer } from './currentUser';
 
 interface ChatState {
     
@@ -21,34 +19,19 @@ interface MessagesState {
     [messageId: string]: MessageState
 }
 
-interface UserState {
-    // RGB color
-    color: string
-}
-
-interface UsersState {
-    [userId: string]: UserState
-}
-
 const chatsReducer = createReducer<ChatsState>({},
      (builder) => {});
 
 const messagesReducer = createReducer<MessagesState>({}, 
     (builder) => {});
 
-const usersReducer = createReducer<UsersState>({}, () => {})
-
-const currentUserReducer = createReducer<CurrentUserState>(
-    {
-        userId: ""
-    },
-    (builder) => {
-    }
-  )
-
-export const store = configureStore({reducer: {
+const rootReducer = combineReducers({
     chats: chatsReducer,
     messages: messagesReducer,
     users: usersReducer,
     currentUser: currentUserReducer
-}});
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export const store = configureStore({reducer: rootReducer});
