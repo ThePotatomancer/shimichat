@@ -1,11 +1,11 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-interface UserState {
+export interface UserState {
     // RGB color
     color: string
 }
 
-interface UsersState {
+export interface UsersState {
     [userId: string]: UserState
 }
 

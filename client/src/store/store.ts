@@ -1,29 +1,8 @@
-import { combineReducers, configureStore, createReducer} from '@reduxjs/toolkit';
+import { combineReducers, configureStore} from '@reduxjs/toolkit';
 import { usersReducer } from './users';
 import { currentUserReducer } from './currentUser';
-
-interface ChatState {
-    
-}
-
-interface ChatsState {
-    [chatId: string]: ChatState
-}
-
-interface MessageState {
-    content: string,
-    senderUserId: string
-}
-
-interface MessagesState {
-    [messageId: string]: MessageState
-}
-
-const chatsReducer = createReducer<ChatsState>({},
-     (builder) => {});
-
-const messagesReducer = createReducer<MessagesState>({}, 
-    (builder) => {});
+import { chatsReducer } from './chats';
+import { messagesReducer } from './messages';
 
 const rootReducer = combineReducers({
     chats: chatsReducer,

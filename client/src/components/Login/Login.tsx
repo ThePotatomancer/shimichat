@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { TextInput } from "../TextInput/textInput";
 import { addUsersAction } from "../../store/users";
 import { setCurrentUserAction } from "../../store/currentUser";
+import { joinChat } from "../../socketHandlers/emitter";
 
 function isUsernameValid(username: string | undefined) {
     return typeof username === "string" && username.length >= 4;
@@ -20,6 +21,7 @@ export const Login = () => {
         if (isUsernameValid(username)) {
             dispatch(addUsersAction([{userId: username, color: "#"}]));
             dispatch(setCurrentUserAction(username));
+            joinChat("global", username);
         }
         else {
             

@@ -1,22 +1,34 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import { configureSocketServer } from "./connectionHandler";
+import { logError } from "./logger";
 
-const port = process.env.CHAT_SERVER_PORT;
+dotenv.config();
 
-function logInfo(message: string) {
-    console.log(message);
+// TODO: make more generic env param checker
+if (process.env.CHAT_SERVER_PORT === undefined) {
+    logError(`Missing required enviroment variable ${"CHAT_SERVER_PORT"}`)
+    throw new Error();
 }
+const port = Number.parseInt(process.env.CHAT_SERVER_PORT);
 
-function createServer() {
-    const app = express();
+const app = express();
 
-    app.use(cors());
+app.use(cors());
 
-    return app;
-}
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+        cors: {
+            origin: "*"
+        }, 
+        connectionStateRecovery: {
+            maxDisconnectionDuration: 2 * 60 * 1000
+        }
+    });
 
-const app = createServer();
+configureSocketServer(io);
 
-app.listen(port, () => {
-    logInfo(`Listening on port ${port}`);
-  })
+httpServer.listen(port);
