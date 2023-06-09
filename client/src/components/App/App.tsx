@@ -9,9 +9,16 @@ function App() {
   const userId = useSelector<RootState, string | undefined>((state) => state.currentUser.userId);
 
   return (
-    <div>
+    <div className='app'>
       {
-        userId ? <Chat/> : <Login/>
+        userId ? <>
+          <div className='User-Info'>
+              <span>
+                {userId} 
+              </span>
+          </div>
+          <Chat/>
+        </> : <Login/>
       }
     </div>
   );

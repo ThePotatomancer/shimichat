@@ -2,7 +2,7 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export interface MessageState {
     content: string,
-    senderUserId: string,
+    senderUserId: string | null,
     chatId: string
 }
 

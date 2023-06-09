@@ -19,7 +19,7 @@ export const Login = () => {
 
     function confirmUsername() {
         if (isUsernameValid(username)) {
-            dispatch(addUsersAction([{userId: username, color: "#"}]));
+            dispatch(addUsersAction([{userId: username, color: "#000000"}]));
             dispatch(setCurrentUserAction(username));
             joinChat("global", username);
         }
