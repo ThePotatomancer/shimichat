@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { MessagesState } from "../../store/messages";
 import { sendMessage } from "../../socketHandlers/emitter";
-import { Message } from "../Message/message";
+import { Message } from "../Message/Message";
 
 export const Chat = () => {
     const [messageDraft, setMessageDraft] = useState("");

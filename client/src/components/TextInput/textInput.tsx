@@ -4,7 +4,8 @@ interface TextInputProps {
     placeholder?: string,
     onChange: (newValue: string) => void,
     value?: string,
-    maxLength?: number
+    maxLength?: number,
+    type?: "text" | "password"
 }
 
 export const TextInput = ({onChange, placeholder, value, maxLength}: TextInputProps) => {

@@ -1,0 +1,13 @@
+.Login-Page {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+}
+
+.Login-Page input {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

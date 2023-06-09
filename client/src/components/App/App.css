@@ -18,9 +18,11 @@
     margin: 8px;
   }
   
-  .Info-Sidebar { grid-area: Info-Sidebar; }
+  .Info-Sidebar { grid-area: Info-Sidebar; 
+  background-color: #a5a6a7;}
   
-  .Navigation-Sidebar { grid-area: Navigation-Sidebar; }
+  .Navigation-Sidebar { grid-area: Navigation-Sidebar;
+  background-color: #a5a6a7; }
   
   .Chat {  display: grid;
     grid-template-rows: 52px 2.4fr 0.4fr;
