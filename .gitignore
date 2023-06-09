@@ -3,11 +3,11 @@
 **/node_modules
 
 # testing
-client/coverage
+/client/coverage
 
 # production
-client/build
-server/build
+/client/build
+/server/build
 
 # misc
 .DS_Store
