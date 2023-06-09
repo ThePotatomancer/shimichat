@@ -9,6 +9,10 @@ export interface UsersState {
     [userId: string]: UserState
 }
 
+export const SYSTEM_USER: UserState = {
+    color: "#000000"
+}
+
 export const addUsersAction = createAction<(UserState & {userId: string})[]>("addUsers");
 
 export const usersReducer = createReducer<UsersState>({}, (builder) => {
