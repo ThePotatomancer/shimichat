@@ -3,6 +3,7 @@ import { store } from "../store/store";
 import { MessageState, addMessages } from "../store/messages";
 import { addUsersAction } from "../store/users";
 import { getRandomRGBColor } from "../utils";
+import { ChatState, addChats } from "../store/chats";
 
 const dispatch = store.dispatch;
 
@@ -14,5 +15,8 @@ export function listenToSocket() {
             dispatch(addUsersAction([{userId: message.senderUserId, color: getRandomRGBColor()}]))
         }
         dispatch(addMessages([message]));
+    });
+    socket.on("joinChat", (chat: ChatState & {chatId: string}) => {
+        store.dispatch(addChats([chat]));
     });
 }

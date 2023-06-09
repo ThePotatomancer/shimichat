@@ -17,6 +17,8 @@ export function configureSocketServer(io: Server) {
         socket.on(events.JOIN_CHAT, ({chatId, userId}: {chatId: string, userId: string}) => {
             socket.join(chatId);
             io.to(chatId).emit(events.SEND_MESSAGE, {senderUserId: null, content: `${userId} joined the channel!`, chatId, messageId: randomUUID()});
+            // TODO: once chats are saved in DB change the headerMessage building with a fetch from the DB
+            socket.emit(events.JOIN_CHAT, {chatId, headerMessage: `Welcome to the ${chatId} chat!`});
         });
 
         socket.on(events.SEND_MESSAGE, ({content, senderUserId, chatId}: {content: string, senderUserId: string, chatId: string}) => {

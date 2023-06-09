@@ -1,6 +1,11 @@
 import React from "react";
 
-export const NavigationBar = () => {
+interface NavigationBarProps {
+    selectedChatId: string
+    setSelectedChatId: (value: string) => void
+}
+
+export const NavigationBar = ({selectedChatId, setSelectedChatId}: NavigationBarProps) => {
     return <div className='Navigation-Sidebar'>
     </div>
 }

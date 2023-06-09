@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Login } from '../Login/Login';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -7,6 +7,7 @@ import { Chat } from '../Chat/Chat';
 import { NavigationBar } from '../NavigationBar/NavigationBar';
 
 function App() {
+  const [selectedChatId, setSelectedChatId] = useState("global");
   const userId = useSelector<RootState, string | undefined>((state) => state.currentUser.userId);
 
   return (
@@ -18,9 +19,9 @@ function App() {
                 {userId} 
               </span>
           </div>
-          <NavigationBar/>
+          <NavigationBar selectedChatId={selectedChatId} setSelectedChatId={setSelectedChatId}/>
           <div className='Info-Sidebar'></div>
-          <Chat/>
+          <Chat chatId={selectedChatId}/>
         </> : <Login/>
       }
     </div>

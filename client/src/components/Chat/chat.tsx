@@ -4,14 +4,16 @@ import { RootState } from "../../store/store";
 import { MessagesState } from "../../store/messages";
 import { sendMessage } from "../../socketHandlers/emitter";
 import { Message } from "../Message/Message";
+import { ChatState } from "../../store/chats";
 
-export const Chat = () => {
+export const Chat = ({chatId}: {chatId: string}) => {
     const [messageDraft, setMessageDraft] = useState("");
     const messages = useSelector<RootState, MessagesState>((state) => state.messages);
+    const chat = useSelector<RootState, ChatState>((state) => state.chats[chatId]);
     const currentUserId = useSelector<RootState, string>((state) => state.currentUser.userId as string);
 
     return <div className="Chat">
-        <div className="Chat-Info"> Welcome to the global chat! </div>
+        <div className="Chat-Info"> {chat.headerMessage} </div>
         <div className="Chat-Content">
         {
             Object.keys(messages).map((messageId) => {

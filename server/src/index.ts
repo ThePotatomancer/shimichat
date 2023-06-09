@@ -7,10 +7,8 @@ import { Server } from "socket.io";
 import session from "express-session";
 import { configureSocketServer } from "./connectionHandler";
 import { logError } from "./logger";
-import { authinticate } from "./mongo";
+import { authenticate } from "./mongo";
 import bodyParser from "body-parser";
-
-
 
 const sessionMiddleware = session({
     secret: process.env.SESSION_SECRET,
@@ -48,7 +46,7 @@ configureSocketServer(io);
 app.post("/login", async (req, res) => {
     const userId = req.body.userId;
     const hashedPassword = req.body.hashedPassword;
-    const authinticated = await authinticate(userId, hashedPassword);
+    const authinticated = await authenticate(userId, hashedPassword);
     if (authinticated) {
         res.status(204).end();
     } else {
